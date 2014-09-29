@@ -1,0 +1,59 @@
+自定义左logo：
+				<form name='upload_zou_logo' action="../../Admin/WebInfoAdmin/upload_zou_logo" enctype="multipart/form-data" method="post" >
+						<select name='tpl_name_zou'>
+								<option value="please_select_tpl">--请选择模板--</option>
+								<?php
+									for($i=0; $i<count($tpl_info); $i++){
+										echo "<option value=".$tpl_info[$i]['filename'].">".$tpl_info[$i]['filename']."</option>";
+									}
+								?>
+						</select>
+						请选择logo：<input type="file" name="zuo_logo" />&nbsp;&nbsp;&nbsp;
+						<input type="submit" value="确定改变左logo" >&nbsp;&nbsp;&nbsp;(文件必须是jpg文件格式，推荐大小：488*83)
+				</form>
+
+自定义右logo：
+				<form name='upload_you_logo' action="../../Admin/WebInfoAdmin/upload_you_logo" enctype="multipart/form-data" method="post" >
+						<select name='tpl_name_you'>
+								<option value="please_select_tpl">--请选择模板--</option>
+								<?php
+									for($i=0; $i<count($tpl_info); $i++){
+										echo "<option value=".$tpl_info[$i]['filename'].">".$tpl_info[$i]['filename']."</option>";
+									}
+								?>
+						</select>
+						请选择logo：<input type="file" name="you_logo" />&nbsp;&nbsp;&nbsp;
+						<input type="submit" value="确定改变右logo" >&nbsp;&nbsp;&nbsp;(文件必须是jpg文件格式，推荐大小：195*60)
+				</form>
+自定义24小时客服咨询热线图片：
+				<form name='upload_24_xiao_shi_ke_fu_zi_xun_re_xian' action="../../Admin/WebInfoAdmin/upload_24_xiao_shi_ke_fu_zi_xun_re_xian" enctype="multipart/form-data" method="post" >
+						<select name='tpl_name_24_xiao_shi_ke_fu_zi_xun_re_xian'>
+								<option value="please_select_tpl">--请选择模板--</option>
+								<?php
+									for($i=0; $i<count($tpl_info); $i++){
+										echo "<option value=".$tpl_info[$i]['filename'].">".$tpl_info[$i]['filename']."</option>";
+									}
+								?>
+						</select>
+						请选择logo：<input type="file" name="24_xiao_shi_ke_fu_zi_xun_re_xian" />&nbsp;&nbsp;&nbsp;
+						<input type="submit" value="确定改变24小时客服咨询热线图片" >&nbsp;&nbsp;&nbsp;(文件必须是jpg文件格式，推荐大小：256*68)
+				</form>
+自定义售后服务邮箱图片：
+				<form name='upload_shou_hou_fu_wu_you_xiang' action="../../Admin/WebInfoAdmin/upload_shou_hou_fu_wu_you_xiang" enctype="multipart/form-data" method="post" >
+						<select name='tpl_name_shou_hou_fu_wu_you_xiang'>
+								<option value="please_select_tpl">--请选择模板--</option>
+								<?php
+									for($i=0; $i<count($tpl_info); $i++){
+										echo "<option value=".$tpl_info[$i]['filename'].">".$tpl_info[$i]['filename']."</option>";
+									}
+								?>
+						</select>
+						请选择logo：<input type="file" name="shou_hou_fu_wu_you_xiang" />&nbsp;&nbsp;&nbsp;
+						<input type="submit" value="确定改变售后服务邮箱图片" >&nbsp;&nbsp;&nbsp;(文件必须是jpg文件格式，推荐大小：256*68)
+				</form>
+
+<form name='dai_ma' method='POST' action='../../Admin/WebInfoAdmin/quan_ju'>
+自定义footer：  <textarea cols="50" rows="10" name="web_footer">{$web_info[0][web_footer]}</textarea>(代码中不要出现双引号，否则无效)<br/>
+聊天代码：      <textarea cols="50" rows="10" name="web_chat">{$web_info[0][web_chat]}</textarea>(代码中不要出现双引号，否则无效)<br/>
+                <input type='submit' value='确定'/>
+</form>

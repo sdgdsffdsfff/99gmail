@@ -1,0 +1,26 @@
+<IfModule mod_rewrite.c>
+  Options +FollowSymlinks
+  RewriteEngine On
+
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  
+  #rewrite重写规则
+  #泛域名解析实现   注意解析顺序   是按照顺序依照顺序匹配
+  #文章链接跳转到域名/article下
+  RewriteRule ^(article)/(\w+)(\.html)$ Application/Home/View/%{HTTP_HOST}/article/$2.html
+  #模板2的文章详细页问题  images_listcont   注意这个顺序跟 images的顺序   交换过来就会有问题 图片会定位不到
+  RewriteRule ^(images_listcont)/(.*)$ Application/Home/View/%{HTTP_HOST}/images_listcont/$2
+  #静态页中的图片导向到域名下的images下
+  RewriteRule ^(images)/(.*)$ Application/Home/View/%{HTTP_HOST}/images/$2
+  #静态页面下其他比如css之类的导向到域名/other文件夹
+  RewriteRule ^(other)/(.*)$ Application/Home/View/%{HTTP_HOST}/other/$2
+  #文章列表页导向到域名/list文件夹下/
+  RewriteRule ^(list)/(\w+)(\.html)$ Application/Home/View/%{HTTP_HOST}/list/$2.html
+  #域名下的其他没有匹配到的静态页面跳转到域名下相应的页面
+  RewriteRule ^(\w+)(\.html)$ Application/Home/View/%{HTTP_HOST}/$1.html
+  #index.php  主入口文件跳转到域名下index.html文件 也就是主页面
+  RewriteRule ^(index)(\.php)$ Application/Home/View/%{HTTP_HOST}/index.html
+
+
+</IfModule>

@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Untitled Document</title>
+        <style type="text/css">
+            body {font-family: Arial, Helvetica, sans-serif; font-size:12px; text-align:center;}
+            a { text-decoration: none;}
+            #all {widht: 100%; text-align:center; margin:auto;}
+            #main {width: 96%; line-height: 1.8; margin:auto; border:1px #ccc dashed; text-align: left; text-indent: 2em;}
+        </style>
+    </head>
+    <body>
+        <div id="all">
+            <div id="main">
+                <form method='post' action='../../Admin/WebAdmin/del_websites'>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type='submit' value='1.删除各个站点'/>    请谨慎操作
+                </form>
+                <form method='post' action='../../Admin/WebAdmin/produce_web_point'>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type='submit' value='2.生成各个站点'/>
+                </form>
+
+                <table width="100%" border="0" cellpadding="2" cellspacing="0">
+                    <tr>
+                        <td width="100%">
+                            <table border="0" cellpadding="3" cellspacing="1" width="100%" align="center" style="background-color: #b9d8f3;">
+                                <tr style="text-align: center; COLOR: #0076C8; BACKGROUND-COLOR: #F4FAFF; font-weight: bold">
+                                    <td><font size="2">序号</font></td>
+                                    <td><font size="2">网址</font></td>
+                                    <td><font size="2">关键词</font></td>
+                                    <td><font size="2">属性</font></td>
+                                    <td><font size="2">下载</font></td>
+                                    <td><font size="2">管理</font></td>
+                                </tr>
+                                <?php
+                                function attribute($gdp_order){
+                                if($gdp_order <= 50){
+                                return 'Top50';
+                                }else{
+                                return '次要';
+                                }
+                                }
+
+                                function return_city_cn($city, $view_info, $city_keywords){
+                                $temp_city_en = explode('.', $view_info);
+                                $city_en = $temp_city_en[0];
+                                for($i=0; $i<count($city); $i++){
+                                if($city[$i]['city_en'] == $city_en){
+                                return preg_replace('/{city}/u', $city[$i]['city_cn'], $city_keywords);
+                                }
+                                }
+                                }
+
+                                for($i=0; $i<count($view_info); $i++){
+                                $id = $i+1;
+                                echo	"<tr style='text-align: left; COLOR: #0076C8; BACKGROUND-COLOR: #F4FAFF;'>
+                                <td><font size='2'>".$id."</font></td>
+                                <td><font size='2'><a href='http://".$view_info[$i][filename]."' target='_blank'>".$view_info[$i][filename]."</font></td>
+                                <td><font size='2'>".return_city_cn($city, $view_info[$i][filename], $city_keywords)."</font></td>
+                                <td><font size='2'>".attribute($city[$i][gdp_order])."</font></td>
+                                <td><font size='2'><a href=\'../../index.php/Admin/CityAdmin/load_city_source?city_en=".$view_info[$i][filename].">下载</a></font></td>
+                                <td><font size='2'><a href='../../Admin/WebPointAdmin/index?city_en=".$view_info[$i][filename]."'>管理</font></td>
+                                </tr>";
+
+                                }
+                                for($i=0; $i<count($external_link); $i++){
+                                $id = count($view_info)+1+$i;
+                                echo	"<tr style='text-align: left; COLOR: #0076C8; BACKGROUND-COLOR: #F4FAFF;'>
+                                <td><font size='2'>".$id."</font></td>
+                                <td><font size='2'><a href='http://".$external_link[$i][link_url]."' target='_blank'>".$external_link[$i][link_url]."</font></td>
+                                <td><font size='2'>".$external_link[$i][keywords]."</font></td>
+                                <td><font size='2'>".$external_link[$i][attribute]."</font></td>
+                                <td><font size='2'></font></td>
+                                <td><font size='2'></font></td>
+                                </tr>";
+
+                                }
+
+                                ?>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

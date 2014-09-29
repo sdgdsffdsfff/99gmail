@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<style type="text/css">
+body {font-family: Arial, Helvetica, sans-serif; font-size:12px; text-align:center;}
+a { text-decoration: none;}
+#all {widht: 100%; text-align:center; margin:auto;}
+#main {width: 96%; line-height: 1.8; margin:auto; border:1px #ccc dashed; text-align: left; text-indent: 2em;}
+</style>
+</head>
+<body>
+<div id="all">
+		<div id="main">
+				<form name='upload_logo' action="../../Admin/WebPointAdmin/upload_logo" enctype="multipart/form-data" method="post" >
+						<input type='hidden' name='city_en' value='{$city_en}'>
+						请选择logo：<input type="file" name="logo" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="submit" value="确定改变logo" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(文件必须是jpg文件格式，推荐大小：149*103)
+						<img src="/Application/Home/View/{$city_en}/images/163logo.jpg"/>
+				</form>
+		</div>
+		<div id="main">
+				<form name='change_introduce_title' action="../../Admin/WebPointAdmin/change_introduce_title" method="post" >
+						<input type='hidden' name='city_en' value='{$city_en}'>
+						本地城市介绍标题：<input type="text" name="introduce_title" value="{$title}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="submit" value="确定改变城市标题" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</form>
+		</div>
+		<div id="main">
+				<form name='change_introduce' action="../../Admin/WebPointAdmin/change_introduce" method="post" >
+						<input type='hidden' name='city_en' value='{$city_en}'>
+						本地城市介绍：
+						<textarea cols="50" rows="10" name="introduce">{$introduce}</textarea>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="submit" value="确定改变城市介绍" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</form>
+		</div>
+		<div id="main">
+				<form name='change_connect_us' action="../../Admin/WebPointAdmin/change_connect_us" method="post" >
+						<input type='hidden' name='city_en' value='{$city_en}'>
+						联系方式：<textarea cols="50" rows="10" name="connect_us">{$connect_us}</textarea>(代码中不要出现双引号，否则无效)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="submit" value="确定改变联系方式" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</form>
+		</div>
+</div>
+</body>
+</html>

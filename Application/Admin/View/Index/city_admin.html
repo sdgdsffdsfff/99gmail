@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<style type="text/css">
+body {font-family: Arial, Helvetica, sans-serif; font-size:12px; text-align:center;}
+a { text-decoration: none;}
+#all {widht: 100%; text-align:center; margin:auto;}
+#main {width: 96%; line-height: 1.8; margin:auto; border:1px #ccc dashed; text-align: left; text-indent: 2em;}
+</style>
+</head>
+<script>
+		//创建ajax引擎对象
+		function createAjaxObject(){
+			if(window.ActiveXObject){
+				var newRequest = new ActiveXObject("Microsoft.XMLHTTP");
+			}else{
+				var newRequest = new XMLHttpRequest();
+			}
+			return newRequest;
+		}
+		var http_request = createAjaxObject();
+
+		function change_first_do_main(obj){
+				if(http_request){
+						var url = "../../Admin/CityAdmin/change_first_do_main";
+						var data = "id="+obj.name+"&value="+obj.value;
+						http_request.open("post",url,true);
+						http_request.setRequestHeader("content-type","application/x-www-form-urlencoded");
+						http_request.onreadystatechange = function(){
+								if(http_request.readyState==4){
+										//等于200表示成功
+										if(http_request.status==200){
+												var res = http_request.responseText;
+												if(res!=""){
+														alert(res);
+														
+												}
+										}
+								}
+						}
+						http_request.send(data);
+				}
+		}
+
+		function change_tpl_name(obj){
+				if(http_request){
+						var url = "../../Admin/CityAdmin/change_tpl_name";
+						var data = "id="+obj.name+"&value="+obj.value;
+						http_request.open("post",url,true);
+						http_request.setRequestHeader("content-type","application/x-www-form-urlencoded");
+						http_request.onreadystatechange = function(){
+								if(http_request.readyState==4){
+										//等于200表示成功
+										if(http_request.status==200){
+												var res = http_request.responseText;
+												if(res!=""){
+														alert(res);
+														
+												}
+										}
+								}
+						}
+						http_request.send(data);
+				}
+		}
+</script>
+<body>
+<div id="all">
+		<div id="main">
+				<form name='add_city' method='post' action='../../Admin/CityAdmin/add_city'>
+				城市英文名：<input type='text' name='city_en' />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				城市中文名：<input type='text' name='city_cn' />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				GDP名次：<input type='text' name='gdp_order' />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type='submit' value='添加' />
+				</form>
+				<table width="100%" border="0" cellpadding="2" cellspacing="0">
+						<tr>
+								<td width="100%">
+										<table border="0" cellpadding="3" cellspacing="1" width="100%" align="center" style="background-color: #b9d8f3;">
+												<tr style="text-align: center; COLOR: #0076C8; BACKGROUND-COLOR: #F4FAFF; font-weight: bold">
+														<td><font size="2">序号</font></td>
+														<td><font size="2">城市英文名</font></td>
+														<td><font size="2">城市中文名</font></td>
+														<td><font size="2">GDP名次</font></td>
+														<td><font size="2">选择域名</font></td>
+														<td><font size="2">选择模板</font></td>
+														<td><font size="2">删除</font></td>
+												</tr>
+												<?php
+														function test($domain_name ,$city){
+																if($city['first_do_main'] == 'rand'){
+																		$temp_domain_name = "<option  value='rand' selected='selected'>--随机--</option>";
+																		for($i=0; $i<count($domain_name); $i++){
+																				$temp_domain_name .= "<option  value='".$domain_name[$i][domain_first_name]."'>".$domain_name[$i][domain_first_name]."</option>";
+																		}
+																}else{
+																		$temp_domain_name = "<option  value='rand'>--随机--</option>";
+																		for($i=0; $i<count($domain_name); $i++){
+																				if($city['first_do_main'] == $domain_name[$i][domain_first_name]){
+																						$temp_domain_name .= "<option  value='".$domain_name[$i][domain_first_name]."' selected='selected'>".$domain_name[$i][domain_first_name]."</option>";
+																				}else{
+																						$temp_domain_name .= "<option  value='".$domain_name[$i][domain_first_name]."'>".$domain_name[$i][domain_first_name]."</option>";
+																				}
+																		}
+																}
+																return $temp_domain_name;
+														}
+
+														function test2($tpl_info ,$city){
+																if($city['tpl_name'] == 'rand'){
+																		$temp_tpl_name = "<option  value='rand' selected='selected'>--随机--</option>";
+																		for($i=0; $i<count($tpl_info); $i++){
+																				$temp_tpl_name .= "<option  value='".$tpl_info[$i]['filename']."'>".$tpl_info[$i]['filename']."</option>";
+																		}
+																}else{
+																		$temp_tpl_name = "<option  value='rand'>--随机--</option>";
+																		for($i=0; $i<count($tpl_info); $i++){
+																				if($city['tpl_name'] == $tpl_info[$i]['filename']){
+																						$temp_tpl_name .= "<option  value='".$tpl_info[$i]['filename']."' selected='selected'>".$tpl_info[$i]['filename']."</option>";
+																				}else{
+																						$temp_tpl_name .= "<option  value='".$tpl_info[$i]['filename']."'>".$tpl_info[$i]['filename']."</option>";
+																				}
+																		}
+																}
+																return $temp_tpl_name;
+														}
+                                                        
+                                                      
+
+														for($i=0; $i<count($city); $i++){
+																$id = $i+1;
+																echo	"<tr style='text-align: left; COLOR: #0076C8; BACKGROUND-COLOR: #F4FAFF;'>
+																				<td><font size='2'>".$id."</font></td>
+																				<td><font size='2'>".$city[$i][city_en]."</font></td>
+																				<td><font size='2'>".$city[$i][city_cn]."</font></td>
+																				<td><font size='2'>".$city[$i][gdp_order]."</font></td>
+																				<td><font size='2'>
+																			            <select name='".$city[$i][id]."' onchange='change_first_do_main(this);'>
+                                                                                             ".test($domain_name, $city[$i])."
+                                                                                        </select>
+																				    </font>
+																				</td>
+																				<td><font size='2'>
+																						<select name='".$city[$i][id]."' onchange='change_tpl_name(this);'>
+																								".test2($tpl_info, $city[$i])."
+																						</select>
+																				</font></td>
+																				<td><font size='2'><a href=\'../../index.php/Admin/CityAdmin/delete_city?id=".$city[$i][id]." target='main'>删除</a></font></td>
+																		</tr>";
+
+														}
+												?>
+										</table>
+								</td>
+						</tr>
+				</table>
+				<a href='../../Admin/CityAdmin/delete_all_city'>全部删除</a>
+				<form name='upload_city' action="../../Admin/CityAdmin/add_city_file" enctype="multipart/form-data" method="post" >
+				请选择城市文件：<input type="file" name="city_file" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="submit" value="添加" >
+				</form>
+				<p>文件格式为.txt，且编码格式为utf-8！</p>
+				<img src="/Application/Admin/View/Index/images/city_description.jpg" />
+		</div>
+</div>
+</body>
+</html>

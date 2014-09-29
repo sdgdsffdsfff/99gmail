@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<style type="text/css">
+body {font-family: Arial, Helvetica, sans-serif; font-size:12px; text-align:center;}
+a { text-decoration: none;}
+#all {widht: 100%; text-align:center; margin:auto;}
+#main {width: 96%; line-height: 1.8; margin:auto; border:1px #ccc dashed; text-align: left; text-indent: 2em;}
+</style>
+</head>
+<body>
+<div id="all">
+	<div id="main">
+				<form method='post' action='../../Admin/WebAdmin/produce_web_point'>
+				<!--<select name='tpl_name'>
+						<option value="please_select_tpl">--请选择模板--</option>
+						<?php
+							for($i=0; $i<count($tpl_info); $i++){
+								echo "<option value=".$tpl_info[$i]['filename'].">".$tpl_info[$i]['filename']."</option>";
+							}
+						?>
+				</select>-->
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type='submit' value='生成各个站点' />
+				</form>
+				<table width="100%" border="0" cellpadding="2" cellspacing="0">
+						<tr>
+								<td width="100%">
+										<table border="0" cellpadding="3" cellspacing="1" width="100%" align="center" style="background-color: #b9d8f3;">
+												<tr style="text-align: center; COLOR: #0076C8; BACKGROUND-COLOR: #F4FAFF; font-weight: bold">
+														<td><font size="2">序号</font></td>
+														<td><font size="2">站点域名</font></td>
+														<td><font size="2">管理</font></td>
+												</tr>
+												<?php
+
+														for($i=0; $i<count($web_info); $i++){
+																$id = $i+1;
+																echo	"<tr style='text-align: left; COLOR: #0076C8; BACKGROUND-COLOR: #F4FAFF;'>
+																				<td><font size='2'>".$id."</font></td>
+																				<td><font size='2'><a href='http://".$web_info[$i][filename].".sdgl.cn' target='_blank'>".$web_info[$i][filename].".sdgl.cn</font></td>
+																				<td><font size='2'><a href='../../Admin/WebPointAdmin/index?city_en=".$web_info[$i][filename]."'>管理</font></td>
+																		</tr>";
+
+														}
+												?>
+										</table>
+								</td>
+						</tr>
+				</table>
+    </div>
+</div>
+</body>
+</html>
